@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Shows use of document.createElement() appendChild()
+-->
+	<head>
+		<meta charset="utf-8">
+		<title>set min and max</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	</head>
+	<body>
+<h3> set min and max </h3>
+<label for min> minVal:</label>
+<input type="number" id="min" value="0">
+<label for max> maxVal:</label>
+<input type="number" id="max" value="10">
+
+<input id="button" type="button" value="Select" onclick="requestClicked()"/>
+
+<ul id="playlist">
+</ul>
+<script>
+      function requestClicked(){
+
+      	let minVal = parseInt($("#min").val());
+      	let maxVal = parseInt($("#max").val());
+        $.get("/resetMinMax", {min:minVal ,max:maxVal});
+        return false;
+      }
+
+      function setminmax(data){
+      	$("#min").val(data.min);
+		$("#max").val(data.max);
+	}
+
+      $(document).ready(function() {
+      	$.get('/getminMax', setminmax)
+      });
+
+    </script>
+	</body>
+</html>

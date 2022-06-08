@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Shows use of document.createElement() appendChild()
+-->
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<meta charset="utf-8">
+		<title>Calculator</title>
+	</head>
+	<body>
+<h3 id="header3">Decimal</h3>
+<input type="text" id="textInput1" value="">
+
+<select id="function" name="Function">
+<option selected="selected" value="ADD">ADD</option>
+</select>
+
+<input type="text" id="textInput2" value="">
+<input type="button" id="calculate" value="Calculate" onclick="requestClicked()"/>
+<br>
+<h3 id="headerX"></h3>
+
+
+<ul id="playlist">
+</ul>
+<script>
+	var base = "dec";
+	var text_input1 = document.getElementById("textInput1").value;
+	var text_input2 = document.getElementById("textInput2").value;
+	var buttonPressed = document.getElementById("calculate");
+
+
+function requestClicked()
+{
+	text_input1 = $("#textInput1").val();
+	text_input2 = $("#textInput2").val();
+
+	let num = 0;
+	let stringAdded = "";
+ 
+	if(base == "bi")
+	{
+		text_input1 = parseInt(text_input1, 2);
+		text_input2 = parseInt(text_input2, 2);
+	}
+	else if(base == "hex")
+	{
+		text_input1 = "0x" + text_input1;
+		text_input2 = "0x" + text_input2;
+		text_input1 = parseInt(text_input1);
+		text_input2 = parseInt(text_input2);
+	}
+	console.log(text_input1 + text_input2)
+
+	num = parseInt(text_input1.toString(10)) + parseInt(text_input2.toString(10));
+
+	if(base == "dec")
+		stringAdded = num;
+	else if(base == "bi")
+		stringAdded = num.toString(2);
+	else if(base == "hex")
+		stringAdded = num.toString(16);
+
+	$("#headerX").html(stringAdded);
+}
+		function setBase(data){
+      	base = String(data.base);
+			if(base == "dec")
+				$("#header3").html("Decimal");
+			else if(base == "bi")
+				$("#header3").html("Binary");
+			else if(base == "hex")
+				$("#header3").html("Hexadecimal");
+
+      }
+
+$(document).ready(function() {
+      	$.get('/getBase', setBase)
+      });
+</script>
+	</body>
+</html>

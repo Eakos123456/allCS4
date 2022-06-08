@@ -1,0 +1,16 @@
+{
+  "name": "guessnum",
+  "version": "1.0.0",
+  "description": "gn",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.3",
+    "seedrandom": "^3.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "J",
+  "license": "UNLICENSED"
+}

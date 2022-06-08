@@ -1,0 +1,17 @@
+
+/* # affects individual elements */
+#myName {
+	font-weight: bold;
+	font-size: 90px;
+}
+/* this is a comment line */
+/* . affects multiple elements */
+.yourName {
+	font-size: 24px;
+	font-family: comic sans ms, broadway, arial
+}
+span {
+	font-style: italic;
+	/* hex colors with R G B */
+	color: #0000FF;
+}

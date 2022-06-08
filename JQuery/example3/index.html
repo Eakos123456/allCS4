@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<!--
+	Shows use of adding an item with jQuery
+	Shows use of change text with each()
+	Shows use of attr() function
+
+-->
+
+	<head>
+		<title>Third jQuery Ex</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js">
+
+		</script>
+	</head>
+	<body>
+		<h1 id="heading1">Adding HTML</h1>
+
+		<div class="div1">Here is a class div1</div>
+		<ul id="aList">
+			<li>Here is 1</li>
+			<li>Here is 2</li>
+		</ul>
+		<div class="div1">Here is another class div1</div>
+		<ul id="theList">
+			<li>Here is 1</li>
+			<li>Here is 2</li>
+		</ul> 
+		<div class="div3">Here is a class div3</div>
+
+		<p>Here is a p element</p>
+		<p>Here is another p element</p>
+		<h2 class="div1">Here is a h2 element with a class div1</h2>
+		<div class="divEl">Here is a class divE1</div>
+		<ul id="oneList">
+			<li>Here is 1</li>
+			<li>Here is 2</li>
+		</ul> 
+		<div>Change will go here</div>
+		<script type="text/javascript">
+			$(document).ready(
+				function() {
+					alert("pause");
+
+					$("#heading1").html("Change HTML");
+
+					$(".div1").html("Change the class div1");
+
+					$("#aList").append("<li>Here is 3</li>");
+					//can combine .css and .html
+					$("p").css("font-weight","bold").html("Change all p elements");
+//					$("p").css("font-weight","bold")
+//					$("p").html("Change all p elements");
+					
+					$("#oneList").append("<li>Added to theList here</li>");
+					$("div").html("Change all div elements");
+					$(".divEl").html("DivE1 Change Here");
+
+
+				}
+
+
+			);
+		</script>
+	</body>
+</html>

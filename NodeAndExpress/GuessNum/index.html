@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Shows use of document.createElement() appendChild()
+-->
+	<head>
+		<meta charset="utf-8">
+		<title>GuessNumber</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	</head>
+	<body>
+<h3 id="header3"> Guess A Number From 1 to 10</h3>
+<label for numberInput> Guess:</label>
+<input type="number" id="numberInput" value="0" min="0" max="10" >
+<input id="button" type="button" value="Select" onclick="requestClicked()"/>
+
+<ul id="playlist">
+</ul>
+<script>   
+      function output(data) {
+      	let n = data.answer;
+      	console.log(n);
+	     if(n==1)
+			alert("choose a smaller number");
+		else if(n==-1)
+			alert("choose a larger number");
+		else
+			alert("you guessed right");
+      }
+      function requestClicked(){
+      	let guess = $("#numberInput").val();
+        $.get("/request", {index:guess} , output);
+        return false;
+      }
+      function setminmax(data){
+      	let minVal = data.min;
+		let maxVal = data.max;
+		$("#header3").html("Guess A Number From " + minVal + " to " + maxVal);
+		$("#numberInput").attr({"min":minVal,"max":maxVal});
+		$("#numberInput").val(minVal);
+      }
+
+
+      //unfinished code
+      $(document).ready(function() {
+      	$.get('/getminMax', setminmax)
+      });
+
+    </script>
+	</body>
+</html>

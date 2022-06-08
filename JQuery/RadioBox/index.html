@@ -1,0 +1,62 @@
+
+
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>Radio</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A Radio Form</h1>
+        <hr>
+        <form action="#">
+        <fieldset>
+            <legend>A Radio Form</legend>
+
+            <input type="radio" id="vegan" name="eating" value="vegan" checked>
+                        <label for="vegan">Vegan</label>
+                        <input type="radio" id="vegetarian" name="eating" value="vegetarian">
+                        <label for="vegetarian">Vegetarian</label>
+                        <input type="radio" id="omnivore" name="eating" value="omnivore">
+                        <label for="omnivore">Omnivore</label>
+                        <input type="radio" id="carnivore" name="eating" value="carnivore">
+                        <label for="carnivore">Carnivore</label>
+
+            <div class="form-field">
+                <input id="submit" type="submit" name="submit" value="Send Form">
+            </div>
+
+        </fieldset>    
+        </form>
+
+        <script type="text/javascript">
+
+
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+                    	//console.log($("#sports1").prop("checked"));
+                        //alert($("#num").val(3));
+                        var radioValue = $("input[name='eating']:checked").val();
+                        alert(radioValue);
+                        $("#omnivore").prop("checked", true);
+                        return false;
+
+                        //let radios = $('input:radio[name=eating]');
+                        //radios.filter('[value=omnivore]').prop("checked", true);
+                        //color input, date input, range input
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

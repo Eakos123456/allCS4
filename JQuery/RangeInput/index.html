@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>Range</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A Range Form</h1>
+        <hr>
+        <form action="#">
+        <fieldset>
+            <legend>A Range Form</legend>
+            
+            <input type="range" name="rating" id="rating" min="-5" max="5" value="-5">
+
+
+            <div class="form-field">
+                <input id="submit" type="submit" name="submit" value="Send Form">
+            </div>
+
+        </fieldset>    
+        </form>
+
+        <script type="text/javascript">
+
+
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+                        let rangeIn = $("#rating").val();
+                        alert(rangeIn);
+                        $("#rating").val(5);
+                        return false;
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

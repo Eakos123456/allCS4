@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>Input Ex</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A A DropDown Form</h1>
+        <hr>
+        <form action="#">
+        <fieldset>
+            <legend>A DropDown Form</legend>
+
+                <label for="residence">Residence:</label>
+                        <select id="residence" name="state">
+                            <option selected="selected" value="House">House</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Cabin">Cabin</option>
+                            <option value="Castle">Castle</option>
+                        </select>
+ 
+
+            <div class="form-field">
+                <input id="submit" type="submit" name="submit" value="Send Form">
+            </div>
+
+        </fieldset>    
+        </form>
+
+        <script type="text/javascript">
+
+
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+                        //console.log($("#residence").val());
+                    $("#residence").val("Castle");
+
+                        return false;
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

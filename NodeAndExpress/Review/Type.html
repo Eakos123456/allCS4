@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Shows use of document.createElement() appendChild()
+-->
+	<head>
+		<meta charset="utf-8">
+		<title>type</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	</head>
+	<body>
+    <label for type>Type:</label>
+<select id="type" name="type">
+    <option selected="selected" value="Area">Area</option>
+    <option value="Perim">Perimeter</option>
+</select>
+
+<input id="button" type="button" value="Select"/>
+
+<ul id="playlist">
+</ul>
+<script>
+        function init()
+      {
+        var button = document.getElementById("button");
+        button.onclick = requestClicked;
+      }
+      function requestClicked(){
+      	let send = String($("#type").val());
+        $.get("/resetType", {type:send});
+      }
+
+      function setType(data){
+        //alert(data.type);
+        if(data.type == "Area")
+          $("#type").val("Area");
+        else
+          $("#type").val("Perim");
+      	//$("#type").selected = data.type;
+	}
+
+      $(document).ready(function() {
+        init();
+      	$.get('/getType', setType)
+      });
+
+    </script>
+	</body>
+</html>

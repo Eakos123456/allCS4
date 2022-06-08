@@ -1,0 +1,126 @@
+
+
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>A Basic Table Form</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A Basic Form</h1>
+        <hr>
+        <form action="#">
+    <fieldset>
+        <legend>Student Information</legend>
+        <fieldset>
+                <legend>General</legend>
+                <label for="name"> Name:</label>
+                <input id="name" type="text" value="">
+                <input id="birthdate" type="date" name="birthdate" value="2010-01-01">
+                <input type="radio" id="House" name="residence" value="House" checked>
+                        <label for="House">House</label>
+                        <input type="radio" id="Apartment" name="residence" value="Apartment">
+                        <label for="Apartment">Apartment</label>
+                        <input type="radio" id="Cabin" name="residence" value="Cabin">
+                        <label for="Cabin">Cabin</label>
+                        <input type="radio" id="Castle" name="residence" value="Castle">
+                        <label for="Castle">Castle</label>
+            </div>
+
+        </fieldset>
+        <input id="reset" type="reset" name="reset form" value="Clear form">
+                <input id="submit" type="submit" name="submit" value="Send Form">
+    </fieldset>  
+        </form>
+        <p id ="lastG"></p>
+        <table id="theTable" border="1">
+            <tr>
+                <th>Name</th>
+                <th>Birthdate</th>
+                <th>Residence</th>
+            </tr>
+        </table>
+        <input type="button" name="clear" value="Clear Table" min="1" onclick="clearTable()">
+        <input type="button" name="get" value="Fill Form" onclick="getinfo()" min="1">
+        <input type="number" name="" id = "numid">
+
+
+        <script type="text/javascript">
+            function clearTable() 
+            {
+                //this bottom one is not as good doesn't remove residual tr elements
+                //$("#theTable td").remove();
+                $("#theTable td").closest('tr').remove();
+                //removes class
+                //$(".tr1").remove();
+            }
+            function getinfo()
+            {
+                let index = parseInt($("#numid").val());
+                if(index>$("#theTable tr").length-1 || index<=0 || isNaN(index))
+                {
+                    $("#lastG").text("index not in bounds");
+                    return;
+                }
+
+                $("#lastG").text("");
+
+                let index2 = (index-1) * 3;
+                $("#name").val($("#theTable td").eq(index2).text());
+                $("#birthdate").val($("#theTable td").eq(index2+1).text());
+                $("#" + $("#theTable td").eq(index2+2).text()).prop("checked", true);
+
+            }
+
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+                        let error = false;
+                        if($("#name").val() == "")
+                        {
+                            $("#lastG").text("Name must be entered");
+                            return false;
+                        }
+                        else
+                        {
+                            $("#theTable tr").each(function() {
+                                if($(this).find("td:eq(0)").text() == $("#name").val())
+                                    error = true;
+                            })
+                            if(error)
+                            {
+                                $("#lastG").text("Name is already entered");
+                                return false;
+                            }
+                        }
+                        let d1 = new Date($('#birthdate').val());
+                        let d2 = new Date();
+                        if(d1.getTime() > d2.getTime())
+                        {
+                            $("#lastG").text("A Valid Birthdate Must Be Entered");
+                            return false;
+                        }
+                        //console.log(d1.getTime());
+                        //console.log(d2.getTime());
+
+                        var radioValue = $("input[name='residence']:checked").val();
+
+                            $("#theTable").append("<tr class='tr1'><td>" + $("#name").val() +"</td>" + "<td>" + $('#birthdate').val() +"</td>" + "<td>" + radioValue +"</td>");
+
+                            $("#lastG").text("");
+                        return false;
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

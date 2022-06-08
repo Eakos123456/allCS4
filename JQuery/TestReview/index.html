@@ -1,0 +1,114 @@
+
+
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>A Basic Table Form</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A Basic Form</h1>
+        <hr>
+        <form action="#">
+        <fieldset>
+                <legend>Object Information</legend>
+                <label for="name"> Object:</label>
+                <input id="name" type="text" value="">
+                <label for="CInp"> Color:</label>
+                <input type="color" id="CInp" name="CInp">
+                <label for="type">type:</label>
+                        <select id="type" name="state">
+                            <option selected="selected" value="Man Made">Man Made</option>
+                            <option value="Animal">Animal</option>
+                            <option value="Plant">Plant</option>
+                            <option value="Mineral">Mineral</option>
+                        </select>
+                <label for="rating">Rating:</label>   
+                <input type="range" name="rating" id="rating" min="1" max="10" value="5">
+                <input type="image" src="./WatermelonDog.jpg" alt="submit" width="50" height="50">
+            </div>
+
+        </fieldset>    
+        </form>
+        <p id ="lastG"></p>
+        <table id="theTable" border="1">
+            <tr>
+                <th>Name</th>
+                <th>Red</th>
+                <th>Green</th>
+                <th>Blue</th>
+                <th>Type</th>
+                <th>Rating</th>
+            </tr>
+        </table>
+        <input type="button" name="get" value="Fill Form" onclick="getinfo()" min="1">
+        <input type="number" name="" id = "numid">
+
+
+        <script type="text/javascript">
+            function getinfo()
+            {
+                let index = parseInt($("#numid").val());
+                if(index>$("#theTable tr").length-1 || index<=0 || isNaN(index))
+                {
+                    $("#lastG").text("index not in bounds");
+                    return;
+                }
+                $("#lastG").text("");
+
+                let index2 = (index-1)*6;
+                $("#name").val($("#theTable td").eq(index2).text());
+                let redVal = parseInt($("#theTable td").eq(index2+1).text()).toString(16).padStart(2, '0');
+                let greenVal = parseInt($("#theTable td").eq(index2+2).text()).toString(16).padStart(2, '0');
+                let blueVal = parseInt($("#theTable td").eq(index2+3).text()).toString(16).padStart(2, '0');
+                $("#CInp").val("#" + redVal + greenVal + blueVal);
+                $("#type").val($("#theTable td").eq(index2+4).text());
+                $("#rating").val(parseInt($("#theTable td").eq(index2+5).text()));
+            }
+
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+                        let error = false;
+                        if($("#name").val() == "")
+                        {
+                            $("#lastG").text("Name must be entered");
+                            return false;
+                        }
+                        else
+                        {
+                            $("#theTable tr").each(function() {
+                                if($(this).find("td:eq(0)").text() == $("#name").val())
+                                    error = true;
+                            })
+                            if(error)
+                            {
+                                $("#lastG").text("Name is already entered");
+                                return false;
+                            }
+                        }
+
+                        let hex_code = $("#CInp").val().split("");
+                        let red = parseInt(hex_code[1]+hex_code[2],16);
+                        let green = parseInt(hex_code[3]+hex_code[4],16);
+                        let blue = parseInt(hex_code[5]+hex_code[6],16);
+
+
+                            $("#theTable").append("<tr class='tr1'><td>" + $("#name").val() +"</td>" + "<td>" + red +"</td>" + "<td>" + green +"</td>" + "<td>" + blue +"</td>" + "<td>" + $("#type").val() +"</td>" + "<td>" + $("#rating").val() +"</td>");
+                            $("#lastG").text("");
+                        return false;
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

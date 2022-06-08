@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>Full Color</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A Full Color Form</h1>
+        <hr>
+        <form action="#">
+        <fieldset>
+            <legend>A Full Color Form</legend>
+
+            <input type="number" id="redVal" name="red" value="0" min="0" max="255" onchange="syncCol()">
+            <input type="number" id="greenVal" name="green" value="0" min="0" max="255" onchange="syncCol()">
+            <input type="number" id="blueVal" name="blue" value="0" min="0" max="255" onchange="syncCol()">
+            <input type="color" name="colorIn" id="CInp" onchange="syncNum()">
+            <div class="form-field">
+                <input id="submit" type="submit" name="submit" value="Send Form">
+            </div>
+
+        </fieldset>    
+        </form>
+
+        <script type="text/javascript">
+
+
+            function syncCol()
+            {
+                let redVal = parseInt($("#redVal").val()).toString(16).padStart(2, '0');
+                let greenVal = parseInt($("#greenVal").val()).toString(16).padStart(2, '0');
+                let blueVal = parseInt($("#blueVal").val()).toString(16).padStart(2, '0');
+                //when not using padStart();
+                // if(blueVal.length == 1)
+                //blueVal = "0" + blueVal
+                $("#CInp").val("#" + redVal + greenVal + blueVal);
+            }
+            function syncNum()
+            {
+                let hex_code = $("#CInp").val().split("");
+                let red = parseInt(hex_code[1]+hex_code[2],16);
+                let green = parseInt(hex_code[3]+hex_code[4],16);
+                let blue = parseInt(hex_code[5]+hex_code[6],16);
+                //also works because parseint() function recognizes 0x as hex
+                //let red = parseInt('0x' + hex_code[1]+hex_code[2]);
+                $("#redVal").val(red);
+                $("#greenVal").val(green);
+                $("#blueVal").val(blue);
+            }
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+                        return false;
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Shows use of document.createElement() appendChild()
+-->
+	<head>
+		<meta charset="utf-8">
+		<title>AreaOrPerim</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	</head>
+	<body>
+<h3 id="header3">Area</h3>
+<label for len1> Len1:</label>
+<input type="number" id="len1" value="0">
+<label for len2> Len2:</label>
+<input type="number" id="len2" value="0">
+<br>
+<label for Square> Shape:</label>
+<input type="radio" id="Square" name="Shape" value="Square" checked>
+    <label for="Square">Square</label>
+    <input type="radio" id="Rectangle" name="Shape" value="Rectangle">
+    <label for="Rectangle">Rectangle</label>
+    <br>
+<input id="button" type="button" value="Select" onclick="requestClicked()"/>
+<h3 id="headerX"></h3>
+
+<ul id="playlist">
+</ul>
+<script>
+
+      var type = "Area"
+      function setType(data){
+      	type = data.type;
+		  $("#header3").html(String(type));
+      }
+
+
+      $(document).ready(function() {
+      	$.get('/getType', setType)
+      });
+
+      function requestClicked() {
+          let l1 = parseInt($("#len1").val());
+          let l2 = parseInt($("#len2").val());
+          if($("input[name='Shape']:checked").val() == "Square")
+            l2 = l1;
+
+        if(type == "Area")
+        {
+          $("#headerX").html(type + " = " + l1*l2);
+        }
+        else
+        {
+          $("#headerX").html(type + " = " + 2*(l1+l2));
+        }
+      }
+
+    </script>
+	</body>
+</html>

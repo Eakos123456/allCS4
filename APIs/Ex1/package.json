@@ -1,0 +1,13 @@
+{
+  "name": "censusapi",
+  "version": "1.0.0",
+  "description": "Census Api",
+  "main": "index.js",
+  "author": "Mr. Yee",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "ws": "^7.1.1"
+  }
+}

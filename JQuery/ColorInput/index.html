@@ -1,0 +1,64 @@
+
+
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>Color</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A Color Form</h1>
+        <hr>
+        <form action="#">
+        <fieldset>
+            <legend>A Color Form</legend>
+
+            <input type="color" name="colorIn" id="CInp">
+
+            <div class="form-field">
+                <input id="submit" type="submit" name="submit" value="Send Form">
+            </div>
+
+        </fieldset>    
+        </form>
+
+        <script type="text/javascript">
+
+
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+
+                        colorInp = $("#CInp").val();
+                        alert(colorInp);
+
+                        let hex_code = $("#CInp").val().split("");
+                        let red = parseInt(hex_code[1]+hex_code[2],16);
+                        let green = parseInt(hex_code[3]+hex_code[4],16);
+                        let blue = parseInt(hex_code[5]+hex_code[6],16);
+                        //also works because parseint recognizes 0x as hex
+                        //let red = parseInt('0x' + hex_code[1]+hex_code[2]);
+                        let rgb = red+" "+green+" "+blue;
+                        alert(rgb);
+
+                        let redVal = parseInt(100).toString(16).padStart(2, '0');
+                        let greenVal = parseInt(200).toString(16).padStart(2, '0');
+                        let blueVal = parseInt(12).toString(16).padStart(2, '0');
+                        $("#CInp").val("#" + redVal + greenVal + blueVal);
+
+                        return false;
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

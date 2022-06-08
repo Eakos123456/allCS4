@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ajax</title>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  </head>
+  <body>
+        <hr>
+            <form action="#">
+                <fieldset>
+                <legend>Student Information</legend>
+                    <div>
+                        <fieldset>
+                        <legend>General</legend>
+
+                        <label for="identifier">ID:</label>
+                        <input id="identifier" type="number" name="identifier" min="1">
+                        <label for="name">Name:</label>
+                        <input id="name" type="text" name="name">
+                        <label for="grade">grade:</label>
+
+                        <select id="grade" name="grade">
+                            <option selected="selected" value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        <br>
+
+                        <label for drive>drives</label>
+                        <input type="checkbox" id="drive" name="drive" value="true">
+
+                </fieldset>
+
+                <input type="reset" name="reset" value="Clear Form">
+                <input type="button" value="Create" onclick="onCreateClick()" id="createButton">
+                <input type="button" value="Read" onclick="onReadClick()" id="readButton">
+                <input type="button" value="Delete" onclick="onDeleteClick()" id="deleteButton">
+                <input type="button" value="Update" onclick="onUpdateClick()" id="updateButton">
+
+                </fieldset>
+            </form>
+
+    <script src="js/home.js"></script>
+
+  </body>
+</html>
+
+ 

@@ -1,0 +1,48 @@
+
+
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>Number</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A Number Form</h1>
+        <hr>
+        <form action="#">
+        <fieldset>
+            <legend>A Number Form</legend>
+            
+            <input type="number" name="num" id="num">
+            <div class="form-field">
+                <input id="submit" type="submit" name="submit" value="Send Form">
+            </div>
+
+        </fieldset>    
+        </form>
+
+        <script type="text/javascript">
+
+
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+                    	//console.log($("#sports1").prop("checked"));
+                        alert($("#num").val(3));
+                    	$("#num").val(3);
+                        return false;
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--   -->
+<html>
+  <head>
+    <title>Ajax</title>
+    <meta charset="utf-8"/>
+    <style type="text/css"></style>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""
+    />
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <script
+      src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+      integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+      crossorigin=""
+    ></script>
+    <style>
+      #issMap {
+        height: 360px;
+      }
+    </style>
+  </head>
+  
+  <body>  
+
+    <p>
+      latitude: <span id="lat"></span>°<br />
+      longitude: <span id="lon"></span>° <br />
+    </p>
+    <div id="issMap"></div>
+
+    <br>
+    <br>
+
+    <div id="request">
+      <input id="requestButton" type="button" value="Request" />
+    </div>
+
+    <script>  
+
+      // Making a map and tiles
+      // Setting a higher initial zoom to make effect more obvious
+      const mymap = L.map('issMap').setView([0, 0], 6);
+      const attribution =
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+      const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      const tiles = L.tileLayer(tileUrl, { attribution });
+      tiles.addTo(mymap);
+
+      // Making a marker with a custom icon
+      const issIcon = L.icon({
+        iconUrl: 'iss200.png',
+        iconSize: [50, 32],
+        iconAnchor: [25, 16]
+      });
+      let marker = L.marker([0, 0], { icon: issIcon }).addTo(mymap);
+
+ 
+
+
+      function success(result) { 
+        console.log(result) 
+
+        // Always set the view to current lat lon and zoom!
+        mymap.setView([result.latitude, result.longitude], mymap.getZoom());
+        marker.setLatLng([result.latitude, result.longitude]);
+
+        document.getElementById('lat').textContent = result.latitude.toFixed(2);
+        document.getElementById('lon').textContent = result.longitude.toFixed(2);
+
+       
+      }
+      
+      function requestClicked(){
+//send an HTTP get request and get a result back.
+      $.get("/request", success);
+
+        return false;
+      }
+
+      $(document).ready(function(){        
+        $("#requestButton").click(requestClicked);
+      });     
+    </script>   
+  </body>
+</html>  

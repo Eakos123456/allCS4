@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<!--
+	Shows use of forms.
+     The action attribute points to the server program.
+     action="#" goes nowhere, since no server program yet.
+-->
+	<head>
+		<title>First Forms Ex</title>
+	</head>
+	<body>
+		<h1>A Basic Form</h1>
+		<hr>
+			<form action="#">
+				<fieldset>
+					<legend>Student Information</legend>
+					<div>
+
+					
+					<fieldset>
+						<legend>General</legend>
+						<label for="username">Name:</label>
+						<input id="username" type="text" name="username" value="name">
+
+						<label for="birthday">Birthdate:</label>
+						<input type="date" id="birthday" name="birthday" value="2000-01-01">
+
+						<label for="grade">Grade:</label>
+						<input id="grade" type="number" name="grade" value="10" min="9" max="12">
+
+					</fieldset>
+
+					<fieldset>
+						<legend>Contact</legend>
+						<label for="phone">Phone:</label>
+						<input id="phone" type="tel" name="phone" value="800-123-4567">
+						<br>
+						<br>
+						<div>
+						<label for="email">Email:</label>
+						<input id="email" type="email" name="email" value="">
+					</fieldset>
+
+
+					<fieldset>
+						<legend>Personal</legend>
+
+						<label for="residence">Residence:</label>
+						<select id="residence" name="state">
+							<option selected="selected" value="house">House</option>
+							<option value="apartment">Apartment</option>
+							<option value="cabin">Cabin</option>
+							<option value="castle">Castle</option>
+						</select>
+
+						<br>
+						<label for="driverLicense">Driver License</label>
+						<input type="checkbox" id="driverLicense" name="driverLicense" value="driverLicense">
+						<br>
+
+						<div>Eating:
+						<br>
+						<input type="radio" id="vegan" name="eating" value="vegan">
+						<label for="vegan">Vegan</label>
+						<input type="radio" id="vegetarian" name="eating" value="vegetarian">
+						<label for="vegetarian">Vegetarian</label>
+						<input type="radio" id="omnivore" name="eating" value="omnivore" checked>
+						<label for="omnivore">Omnivore</label>
+						<input type="radio" id="carnivore" name="eating" value="carnivore">
+						<label for="carnivore">Carnivore</label>
+
+						<br>
+					</fieldset>
+					<div>Comments
+					<br>
+					<textarea id="comments" name="comments" rows="5" cols="25"></textarea>
+					<br>
+					<input type="reset" name="reset" value="Clear Form">
+					<input type="submit" name="send" value="Send Form">
+					</form>
+					
+				</fieldset>
+			</form>
+	</body>
+</html>

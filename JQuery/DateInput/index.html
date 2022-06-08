@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>Date</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A Date Form</h1>
+        <hr>
+        <form action="#">
+        <fieldset>
+            <legend>A Date Form</legend>
+
+            <input id="birthdate" type="date" name="birthdate">
+
+
+            <div class="form-field">
+                <input id="submit" type="submit" name="submit" value="Send Form">
+            </div>
+
+        </fieldset>    
+        </form>
+
+        <script type="text/javascript">
+
+
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+                        alert($('#birthdate').val());
+                        $('#birthdate').val("2001-01-01");
+                        return false;
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

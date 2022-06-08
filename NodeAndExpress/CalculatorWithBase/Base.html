@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Shows use of document.createElement() appendChild()
+-->
+	<head>
+		<meta charset="utf-8">
+		<title>type</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	</head>
+	<body>
+    <label for base>base:</label>
+<select id="base" name="base">
+    <option selected="selected" value="dec">Decimal</option>
+    <option value="bi">Binary</option>
+    <option value="hex">Hex</option>
+</select>
+
+<input id="button" type="button" value="Select"/>
+
+<ul id="playlist">
+</ul>
+<script>
+        function init()
+      {
+        var button = document.getElementById("button");
+        button.onclick = requestClicked;
+      }
+      function requestClicked(){
+      	let send = String($("#base").val());
+        $.get("/resetBase", {base:send});
+      }
+
+      function setBase(data){
+        //alert(data.type);
+
+        if(data.base == "dec")
+          $("#type").val("dec");
+        else if(data.base == "bi")
+          $("#type").val("bi");
+        else if(data.base == "hex")
+          $("#type").val("hex");
+      	//$("#type").selected = data.type;
+	}
+
+      $(document).ready(function() {
+        init();
+      	$.get('/getBase', setBase)
+      });
+
+    </script>
+	</body>
+</html>

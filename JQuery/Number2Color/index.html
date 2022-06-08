@@ -1,0 +1,55 @@
+
+
+<!DOCTYPE html>
+<html>
+<!--
+    Shows use of form events
+-->
+    <head>
+        <title>Number2Color</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>A Number2Color Form</h1>
+        <hr>
+        <form action="#">
+        <fieldset>
+            <legend>A Number2Color Form</legend>
+
+            <input type="number" id="redVal" name="red" value="0" min="0" max="255">
+            <input type="number" id="greenVal" name="green" value="0" min="0" max="255">
+            <input type="number" id="blueVal" name="blue" value="0" min="0" max="255">
+
+            <input type="color" name="colorIn" id="CInp">
+
+            <div class="form-field">
+                <input id="submit" type="submit" name="submit" value="Send Form">
+            </div>
+
+        </fieldset>    
+        </form>
+
+        <script type="text/javascript">
+
+
+        $(document).ready(
+            function()
+            {
+                $("form").submit(
+                    function(event)
+                    {
+                        let redVal = parseInt($("#redVal").val()).toString(16).padStart(2, '0');
+                        let greenVal = parseInt($("#greenVal").val()).toString(16).padStart(2, '0');
+                        let blueVal = parseInt($("#blueVal").val()).toString(16).padStart(2, '0');
+                        $("#CInp").val("#" + redVal + greenVal + blueVal);
+
+                        return false;
+                    }
+                );
+            }
+        );
+        </script>
+    </body>
+</html>

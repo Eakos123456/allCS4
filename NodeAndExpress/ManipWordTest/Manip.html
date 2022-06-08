@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Shows use of document.createElement() appendChild()
+-->
+	<head>
+		<meta charset="utf-8">
+		<title>manip</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	</head>
+
+	<body>
+    <label for="UC">String Manipulation:</label>
+    <input type="radio" id="UC" name="manip" value="UC" checked>
+    <label for="UC">Upper Case</label>
+    <input type="radio" id="LC" name="manip" value="LC">
+    <label for="LC">Lower Case</label>
+    <input type="radio" id="RV" name="manip" value="RV">
+    <label for="RV">Reverse</label>
+
+<br>
+<input id="button" type="button" value="Select" onclick="requestClicked()" />
+
+<ul id="playlist">
+</ul>
+<script>
+      function requestClicked(){
+      	let send = String($("input[name='manip']:checked").val());
+        $.get("/manipChange", {manip:send});
+      }
+
+      function setType(data){
+        //alert(data.type);
+        $("#" + String(data.manip)).prop("checked", true);
+      }
+
+      $(document).ready(function() {
+      	$.get('/manipCheck', setType)
+      });
+    </script>
+	</body>
+</html>

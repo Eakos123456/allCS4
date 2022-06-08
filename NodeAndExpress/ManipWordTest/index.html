@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	Shows use of document.createElement() appendChild()
+-->
+	<head>
+		<meta charset="utf-8">
+		<title>Word</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	</head>
+	<body>
+<h3 id="header3">Upper Case</h3>
+<label for="word">Word:</label>
+<input type="text" id="word" value ="">
+<input id="button" type="button" value="Select" onclick="requestClicked()"/>
+<p id="headerX"></p>
+
+<ul id="playlist">
+</ul>
+<script>
+      var manip = "UC"
+
+      function setType(data){
+      	manip = data.manip;
+        if(manip == "UC")
+          $("#header3").html("Upper Case");
+        if(manip == "LC")
+          $("#header3").html("Lower Case");
+        if(manip == "RV")
+          $("#header3").html("Reverse");
+		  
+      }
+
+      function setWord(data){
+        word = data.word;
+      $("#headerX").html(String(word));
+      }
+
+
+      $(document).ready(function() {
+      	$.get('/manipCheck', setType)
+      });
+
+      function requestClicked() {
+        $.get("/operation", {word:String($("#word").val())}, setWord);
+
+      }
+
+    </script>
+	</body>
+</html>
